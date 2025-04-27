@@ -1,0 +1,70 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "causal-inference"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Gilnore", email = "90876634+Gilnore@users.noreply.github.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+matplotlib==3.10.1
+networkx==3.4.2
+numba==0.61.2
+numba_scipy==0.4.0
+numpy==2.2.5
+scikit_learn==1.6.1
+scipy==1.15.2
+
+]
+
+[project.urls]
+Documentation = "https://github.com/Gilnore/causal-inference#readme"
+Issues = "https://github.com/Gilnore/causal-inference/issues"
+Source = "https://github.com/Gilnore/causal-inference"
+
+[tool.hatch.version]
+path = "src/causal_inference/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/causal_inference tests}"
+
+[tool.coverage.run]
+source_pkgs = ["causal_inference", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/causal_inference/__about__.py",
+]
+
+[tool.coverage.paths]
+causal_inference = ["src/causal_inference", "*/causal-inference/src/causal_inference"]
+tests = ["tests", "*/causal-inference/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
